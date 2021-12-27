@@ -1,38 +1,161 @@
-.App {
-  text-align: center;
+html, body, .App {
+  height: 100%;
+  background-color: var(--darkBackgroundColor);
 }
 
-.App-logo {
-  height: 40vmin;
+.app-content {
+  padding: 20px;
+}
+
+.editor {
+  margin: auto;
+  background-color: #f2f2f2;
+  border-radius: 10px;
+  padding: 20px;
+  height: 400px;
+  min-height: 400px;
+  aspect-ratio: 16/9;
+  display: flex;
+  flex-direction: column;
+}
+
+.editor > h2 {
+  margin: 0;
+  padding: 0;
+  color: #141414;
+  font-size: 1.5rem;
+}
+
+.editor > .controls {
+  margin-top: 10px;
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+}
+
+.editor > .controls > .preview-container {
+  aspect-ratio: 1;
+  flex: 1;
+  background-color: #cccccc;
+  position: relative;
+  overflow: hidden;
+}
+
+.editor > .controls > .preview-container canvas {
+  height: 100%;
+  width: 100%;
+}
+
+.editor > .controls > .preview-container > .dragbox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  border-width: 2px;
+  border-color: #cccccc;
+  border-style: dashed;
+  visibility: hidden;
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.editor > .controls > .preview-container:hover .dragbox {
+  visibility: visible;
+  cursor: move;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.editor > .controls > .inputs {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  border-left-width: 1px;
+  border-left-style: dashed;
+  border-left-color: #cccccc;
+  margin-left: 10px;
+  padding-left: 10px;
+}
+
+.editor > .controls > .inputs > .control-item {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.editor > .controls > .inputs > .control-item > label {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  color: #3e3e3e;
+  font-size: 1rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.editor > .controls > .inputs > .control-item input,
+.editor > .controls > .inputs > .control-item textarea {
+  margin: 5px 0px 15px 0px;
+  border: #cccccc;
+  height: 30px;
+  border-radius: 5px;
+  padding-left: 5px;
+}
+
+.editor > .controls > .inputs > .control-item input:disabled,
+.editor > .controls > .inputs > .control-item textarea:disabled {
+  background-color: #e1dbdb;
+  color: #141414;
+  cursor: not-allowed;
+}
+
+.editor > .controls > .inputs > .export-btn-container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.editor > .controls > .inputs > .export-btn-container button {
+  background-color: #8B4EF0;
+  border: none;
+  color: #ffffff;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.editor > .controls > .inputs > .export-btn-container button:hover {
+  background-color: #914efc;
+}
+
+.editor > .controls > .inputs > .export-btn-container button:disabled {
+  background-color: #7b6d91;
+  cursor: not-allowed;
+}
+
+
+@media only screen and (max-width: 756px) {
+  html, body, #root {
+    height: auto;
   }
-  to {
-    transform: rotate(360deg);
+  .editor {
+    aspect-ratio: unset;
+    max-height: unset;
+    height: auto;
+  }
+
+  .editor > .controls {
+    flex-direction: column;
+  }
+
+  .editor > .controls > .inputs {
+    border: none;
+    border-top-width: 1px;
+    border-top-style: dashed;
+    border-top-color: #cccccc;
+    margin: 0px;
+    padding: 0px;
+    margin-top: 10px;
+    padding-top: 10px;
   }
 }
